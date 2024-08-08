@@ -104,11 +104,14 @@ with st.sidebar:
 #     st.stop()
 # st.session_state["api_key"] = open_api_key
 
-st.title("Talk with your IFC")
-st.write("Share your IFC and ask what is happening")
+st.title("Chat IFC")
+st.write("""
+         Upload your IFC and ask your model
+         """)
 
 uploaded_file = st.file_uploader("Upload file", type=(".ifc"))
 
+st.write(" ## CHAT")
 if uploaded_file:
     with tempfile.NamedTemporaryFile(delete=False, suffix=".ifc") as temp_file:
         temp_file.write(uploaded_file.getbuffer())
@@ -151,6 +154,6 @@ if uploaded_file:
 
 
 #! TODO
-"https://blog.streamlit.io/streamlit-authenticator-part-1-adding-an-authentication-component-to-your-app/"
+#"https://blog.streamlit.io/streamlit-authenticator-part-1-adding-an-authentication-component-to-your-app/"
 # next step
 
