@@ -1,7 +1,7 @@
 import pandas as pd
 import ifcopenshell
 
-
+#* ----------------IFC TRANSFORMATION FUNCTIONS -------------------------------
 def get_JSON_pset(list_GUID, file):
     # Diccionario para almacenar los JSON de Property Sets por list_
     pset_dict = {}  
@@ -26,9 +26,8 @@ def dict_a_df(result_dict):
     for key, value in result_dict.items():
         fila = {"key": key}  # La primera columna es la key del diccionario
         if value:  # Verificar si el diccionario interno no está vacío
-            for subkey, subvalue in value.items():
-                for subsubkey, subsubvalue in subvalue.items():
-                    fila[subsubkey] = subsubvalue  # Añadir columnas y valores
+            for subkey, subdict in value.items():
+                fila.update(subdict)
         filas.append(fila)  
 
     df_pset = pd.DataFrame(filas)
@@ -83,10 +82,6 @@ def transform_ifc_to_df(file):
         print(i)
     
     #Retornamos los dos df
-    return df_final_raw, df_final
-
-#---------------- AGENT FUNCTIONS -----------------------
+    return df_final
 
 
-
-def df_agent():
